@@ -1,0 +1,4073 @@
+#include <iostream>
+#include <string>
+#include<iomanip>
+
+using namespace std;
+
+char moves(void);
+void start();
+
+void king_moves_1();
+void queen_moves_1();
+void bishop_moves_right_1();
+void knight_moves_right_1();
+void rock_moves_right_1();
+void bishop_moves_left_1();
+void knight_moves_left_1();
+void rock_moves_left_1();
+void king_moves_2();
+void queen_moves_2();
+void bishop_moves_right_2();
+void knight_moves_right_2();
+void rock_moves_right_2();
+void bishop_moves_left_2();
+void knight_moves_left_2();
+void rock_moves_left_2();
+void new_king_moves_1();
+void new_queen_moves_1();
+void new_bishop_moves_right_1();
+void new_knight_moves_right_1();
+void new_rock_moves_right_1();
+void new_bishop_moves_left_1();
+void new_knight_moves_left_1();
+void new_rock_moves_left_1();
+void new_king_moves_2();
+void new_queen_moves_2();
+void new_bishop_moves_right_2();
+void new_knight_moves_right_2();
+void new_rock_moves_right_2();
+void new_bishop_moves_left_2();
+void new_knight_moves_left_2();
+void new_rock_moves_left_2();
+void saveTheKing();
+
+// Define the colors used in the chess board
+const string WHITE_COLOR = "\033[47m";
+const string BLACK_COLOR = "\033[40m";
+const string RESET_COLOR = "\033[0m";
+const string RED_COLOR = "\033[31m";
+const string GREEN_COLOR = "\033[32m";
+const string BOLD = "\033[1;1m";
+const string BLUE_COLOR = "\033[1;44m";
+// \u2386
+const int BOARD_SIZE = 8;
+string color;
+string pieces[8][8] =
+{
+    {RED_COLOR + "R", RED_COLOR + "N", RED_COLOR + "B", RED_COLOR + "k", RED_COLOR + "q", RED_COLOR + "b", RED_COLOR + "n", RED_COLOR + "r"},
+    {" ", " ", " ", " ", " ", " ", " ", " "},
+    {" ", " ", " ", " ", " ", " ", " ", " "},
+    {" ", " ", " ", " ", " ", " ", " ", " "},
+    {" ", " ", " ", " ", " ", " ", " ", " "},
+    {" ", " ", " ", " ", " ", " ", " ", " "},
+    {" ", " ", " ", " ", " ", " ", " ", " "},
+    {RED_COLOR + "R", RED_COLOR + "N", RED_COLOR + "B", RED_COLOR + "K", RED_COLOR + "Q", RED_COLOR + "b", RED_COLOR + "n", RED_COLOR + "R"}
+};
+
+char moves()
+{
+    int input, answer;
+
+    do
+    {
+        cout << endl;
+        cout << "Which player wants to take a move?" << endl << endl;
+        cout << "Enter 1 for the first player" << endl;
+        cout << "Enter 2 for the second player" << endl;
+        cout << "Enter 0 to exit the board" << endl;
+        cin >> input;
+
+        if (input == 1)
+        {
+            cout << endl;
+            char choice;
+            cout << "It's the first player's turn" << endl;
+            cout << "Please choose your piece:" << endl;
+            cout << "Enter (K) for King" << endl;
+            cout << "Enter (Q) for Queen" << endl;
+            cout << "Enter (B) for Bishop Left" << endl;
+            cout << "Enter (R) for Rook Lefr" << endl;
+            cout << "Enter (N) for Knight Left" << endl;
+            cout << "Enter (b) for Bishop Right" << endl;
+            cout << "Enter (r) for Rook Right" << endl;
+            cout << "Enter (n) for Knight Right" << endl;
+            cout << "\nEnter piece choice: ";
+            cin >> choice;
+
+            if (choice == 'K' || choice == 'k')
+            {
+                king_moves_1();
+            }
+            else if (choice == 'Q' || choice == 'q')
+            {
+                queen_moves_1();
+            }
+            else if (choice == 'B')
+            {
+                bishop_moves_left_1();
+            }
+            else if (choice == 'b')
+            {
+                bishop_moves_right_1();
+            }
+            else if (choice == 'R')
+            {
+                rock_moves_left_1();
+            }
+            else if (choice == 'r')
+            {
+                rock_moves_right_1();
+            }
+            else if (choice == 'N')
+            {
+                knight_moves_left_1();
+            }
+            else if (choice == 'n')
+            {
+                knight_moves_right_1();
+            }
+            else
+            {
+                cout << "Invalid input, please try again." << endl;
+            }
+            /*cout << " Which piece do you want to move? : ";
+           cin >> answer;
+           cout << endl;
+           if (answer == 'K' || answer || 'k')
+           {
+               new_king_moves_1();
+           }
+           else if (answer == 'Q' || answer == 'q')
+           {
+               new_queen_moves_1();
+           }
+           else if (answer == 'B')
+           {
+               new_bishop_moves_left_1();
+           }
+           else if (answer == 'b')
+           {
+               new_bishop_moves_right_1();
+           }
+           else if (answer == 'R')
+           {
+               new_rock_moves_left_1();
+           }
+           else if (answer == 'r')
+           {
+               new_rock_moves_right_1();
+           }
+           else if (answer == 'N')
+           {
+               new_knight_moves_left_1();
+           }
+           else if (answer == 'n')
+           {
+               new_knight_moves_right_1();
+           }
+           else
+           {
+               cout << "Invalid input, please try again." << endl;
+           }*/
+        }
+        else if (input == 2)
+        {
+            cout << endl;
+            char choice;
+            cout << "It's the second player's turn" << endl;
+            cout << "Please choose your piece:" << endl;
+            cout << "Enter (K) for King" << endl;
+            cout << "Enter (Q) for Queen" << endl;
+            cout << "Enter (B) for Bishop left" << endl;
+            cout << "Enter (R) for Rook left" << endl;
+            cout << "Enter (N) for Knight left" << endl;
+            cout << "Enter (b) for Bishop right" << endl;
+            cout << "Enter (r) for Rook right" << endl;
+            cout << "Enter (n) for Knight right" << endl;
+            cout << "\nEnter piece choice: ";
+            cin >> choice;
+
+            if (choice == 'K' || choice == 'k')
+            {
+                king_moves_2();
+            }
+            else if (choice == 'Q' || choice == 'q')
+            {
+                queen_moves_2();
+            }
+            else if (choice == 'B')
+            {
+                bishop_moves_left_2();
+            }
+            else if (choice == 'b')
+            {
+                bishop_moves_right_2();
+            }
+            else if (choice == 'R')
+            {
+                rock_moves_left_2();
+            }
+            else if (choice == 'r')
+            {
+                rock_moves_right_2();
+            }
+            else if (choice == 'N')
+            {
+                knight_moves_left_2();
+            }
+            else if (choice == 'n')
+            {
+                knight_moves_right_2();
+            }
+            else
+            {
+                cout << "Invalid input, please try again." << endl;
+            }
+            /*cout << " Which piece do you want to move? : ";
+            cin >> answer;
+            cout << endl;
+            if (answer == 'K' || answer || 'k')
+            {
+                new_king_moves_2();
+            }
+            else if (answer == 'Q' || answer == 'q')
+            {
+                new_queen_moves_2();
+            }
+            else if (answer == 'B')
+            {
+                new_bishop_moves_left_2();
+            }
+            else if (answer == 'b')
+            {
+                new_bishop_moves_right_2();
+            }
+            else if (answer == 'R')
+            {
+                new_rock_moves_left_2();
+            }
+            else if (answer == 'r')
+            {
+                new_rock_moves_right_2();
+            }
+            else if (answer == 'N')
+            {
+                new_knight_moves_left_2();
+            }
+            else if (answer == 'n')
+            {
+                new_knight_moves_right_2();
+            }
+            else
+            {
+                cout << "Invalid input, please try again." << endl;
+            }*/
+        }
+        else if (input == 0)
+        {
+            cout << "Exiting the board." << endl;
+            return ' ';
+        }
+        else
+        {
+            cout << "Invalid input, please try again." << endl;
+        }
+    } while (true);
+
+    /*cout << " Do you want o play save the King? ";
+    cout << endl;
+    cin >> answer;
+    if (answer == 'S' || answer == 's')
+    {
+        saveTheKing();
+    }*/
+}
+
+
+
+
+
+// Draws the entire chess board
+void start()
+{
+    const int BOARD_SIZE = 8;
+    cout << endl << endl;
+    cout << setw(44) << BLUE_COLOR << BOLD << " LET'S PLAY CHESS \033[0m" << RESET_COLOR;
+    cout << endl;
+    cout << endl;
+    cout << " It is a two player game. ";
+    cout << endl;
+    cout << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    string player_1, player_2;
+    cout << " Enter the name of player 1 : ";
+    getline(cin, player_1);
+    cout << " Enter the name of player 2 : ";
+    cin >> player_2;
+
+    moves();
+
+}
+/********************************/
+// possible moves of a king 
+
+void king_moves_1()
+{
+    const int BOARD_SIZE = 8;
+    string color;
+
+    cout << "Possible moves for the king: " << endl;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    // Add asterisks to show the possible moves of the king
+    pieces[6][2] = { GREEN_COLOR + "*" };
+    pieces[6][3] = { GREEN_COLOR + "*" };
+    pieces[6][4] = { GREEN_COLOR + "*" };
+
+    // Draw the chess board with pieces
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << " " << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << " " << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << " " << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move king " << endl;
+    new_king_moves_1();
+}
+
+/********************************/
+// posssible moves of a queen 
+void queen_moves_1()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the queen: " << endl;
+    pieces[6][4] = { GREEN_COLOR + "*" };
+    pieces[5][4] = { GREEN_COLOR + "*" };
+    pieces[4][7] = { GREEN_COLOR + "*" };
+    pieces[4][4] = { GREEN_COLOR + "*" };
+    pieces[5][4] = { GREEN_COLOR + "*" };
+    pieces[6][3] = { GREEN_COLOR + "*" };
+    pieces[5][2] = { GREEN_COLOR + "*" };
+    pieces[4][1] = { GREEN_COLOR + "*" };
+    pieces[6][5] = { GREEN_COLOR + "*" };
+    pieces[5][6] = { GREEN_COLOR + "*" };
+
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move queen " << endl;
+    new_queen_moves_1();
+
+}
+
+/********************************/
+// possible moves of a left bishop
+void bishop_moves_left_1()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+
+    cout << "Possible moves for the left bishop: " << endl;
+    pieces[6][1] = { GREEN_COLOR + "*" };
+    pieces[5][0] = { GREEN_COLOR + "*" };
+    pieces[6][3] = { GREEN_COLOR + "*" };
+    pieces[5][4] = { GREEN_COLOR + "*" };
+    pieces[4][5] = { GREEN_COLOR + "*" };
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move left bishop" << endl;
+    new_bishop_moves_left_1();
+
+}
+
+/********************************/
+// possible moves of a right bishop 
+void bishop_moves_right_1()
+{
+    const int BOARD_SIZE = 8;
+
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+    cout << "Possible moves for the Right bishop: " << endl;
+    pieces[6][4] = { GREEN_COLOR + "*" };
+    pieces[5][3] = { GREEN_COLOR + "*" };
+    pieces[4][2] = { GREEN_COLOR + "*" };
+    pieces[6][6] = { GREEN_COLOR + "*" };
+    pieces[5][7] = { GREEN_COLOR + "*" };
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move right bishop" << endl;
+    new_bishop_moves_right_1();
+}
+
+/**********************************/
+// possible move of a left knight
+void knight_moves_left_1()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Left knight: " << endl;
+    pieces[5][2] = { GREEN_COLOR + "*" };
+    pieces[5][0] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move left knight" << endl;
+    new_knight_moves_left_1();
+}
+
+/**********************************/
+//   possible move of a right knight
+void knight_moves_right_1()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+    cout << "Possible moves for the Right knight: " << endl;
+    pieces[5][7] = { GREEN_COLOR + "*" };
+    pieces[5][5] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move right knight" << endl;
+    new_knight_moves_right_1();
+}
+
+/**********************************/
+// possible move a left rock 
+void rock_moves_left_1()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+    cout << "Possible moves for the Left rook: " << endl;
+    pieces[6][0] = { GREEN_COLOR + "*" };
+    pieces[5][0] = { GREEN_COLOR + "*" };
+    pieces[4][0] = { GREEN_COLOR + "*" };
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+
+    cout << "Now first player enter where he wants to move left rock" << endl;
+    new_rock_moves_left_1();
+}
+
+/**********************************/
+// possible move a left rock
+void rock_moves_right_1()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the rook: " << endl;
+    pieces[6][7] = { GREEN_COLOR + "*" };
+    pieces[5][7] = { GREEN_COLOR + "*" };
+    pieces[4][7] = { GREEN_COLOR + "*" };
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now first player enter where he wants to move right rock" << endl;
+    new_rock_moves_right_1();
+}
+void king_moves_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the King: " << endl;
+    pieces[1][2] = { GREEN_COLOR + "*" };
+    pieces[1][3] = { GREEN_COLOR + "*" };
+    pieces[1][4] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+
+    cout << "Now second player enter where he wants to move king" << endl;
+    new_king_moves_2();
+}
+void queen_moves_2()
+{
+    const int BOARD_SIZE = 8;
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Queen: " << endl;
+    pieces[1][4] = { GREEN_COLOR + "*" };
+    pieces[2][4] = { GREEN_COLOR + "*" };
+    pieces[3][4] = { GREEN_COLOR + "*" };
+    pieces[1][5] = { GREEN_COLOR + "*" };
+    pieces[2][6] = { GREEN_COLOR + "*" };
+    pieces[3][7] = { GREEN_COLOR + "*" };
+    pieces[1][3] = { GREEN_COLOR + "*" };
+    pieces[2][2] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now second player enter where he wants to move queen" << endl;
+    new_queen_moves_2();
+
+}
+void bishop_moves_right_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Right Bishop: " << endl;
+    pieces[1][4] = { GREEN_COLOR + "*" };
+    pieces[2][3] = { GREEN_COLOR + "*" };
+    pieces[3][2] = { GREEN_COLOR + "*" };
+    pieces[1][6] = { GREEN_COLOR + "*" };
+    pieces[2][7] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now second player enter where he wants to move right bishop" << endl;
+    new_bishop_moves_right_2();
+}
+void knight_moves_right_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Right Knight : " << endl;
+    pieces[2][2] = { GREEN_COLOR + "*" };
+    pieces[2][0] = { GREEN_COLOR + "*" };
+
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now second player enter where he wants to move right knight" << endl;
+    new_knight_moves_right_2();
+}
+
+void rock_moves_right_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Right Rock: " << endl;
+    pieces[1][7] = { GREEN_COLOR + "*" };
+    pieces[2][7] = { GREEN_COLOR + "*" };
+    pieces[3][7] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now second player enter where he wants to move right rock" << endl;
+    new_rock_moves_right_2();
+}
+void bishop_moves_left_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Lef Bishop: " << endl;
+    pieces[1][1] = { GREEN_COLOR + "*" };
+    pieces[2][0] = { GREEN_COLOR + "*" };
+    pieces[1][3] = { GREEN_COLOR + "*" };
+    pieces[2][4] = { GREEN_COLOR + "*" };
+    pieces[3][5] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now second player enter where he wants to move left bishop" << endl;
+    new_bishop_moves_left_2();
+}
+
+void knight_moves_left_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Left Knight : " << endl;
+    pieces[2][5] = { GREEN_COLOR + "*" };
+    pieces[2][7] = { GREEN_COLOR + "*" };
+
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << "Now second player enter where he wants to move left knight" << endl;
+    new_knight_moves_left_2();
+}
+void rock_moves_left_2()
+{
+    const int BOARD_SIZE = 8;
+
+    // Allocate memory for the pieces array
+    string** pieces = new string * [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        pieces[i] = new string[BOARD_SIZE];
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            pieces[i][j] = " ";
+        }
+    }
+
+    cout << "Possible moves for the Left Rock : " << endl;
+    pieces[1][0] = { GREEN_COLOR + "*" };
+    pieces[2][0] = { GREEN_COLOR + "*" };
+    pieces[3][4] = { GREEN_COLOR + "*" };
+
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Deallocate memory for the pieces array
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] pieces[i];
+    }
+    delete[] pieces;
+    cout << endl;
+    cout << "Now second player enter where he wants to move left rock" << endl;
+    new_rock_moves_left_2();
+}
+
+
+/************************************************************************************/
+// here players enter their input so we can show possible moves with another grid so that they can move
+void new_king_moves_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+    // Mark the current position of the king on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] =
+    {
+        {-1, -1}, {-1, 0}, {-1, 1},
+        {0, -1},           {0, 1},
+        {1, -1}, {1, 0}, {1, 1}
+    };
+
+    cout << "Possible moves for the king: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 8; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // If the new position is on the board, mark it as a possible move
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE) {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            if (board[i][j] == 1)
+            {
+                cout << "K ";
+            }
+            else if (board[i][j] == 2)
+            {
+                cout << "X ";
+            }
+            else
+            {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_king_moves_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+    // Mark the current position of the king on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] =
+    {
+        {-1, -1}, {-1, 0}, {-1, 1},
+        {0, -1},           {0, 1},
+        {1, -1}, {1, 0}, {1, 1}
+    };
+
+    cout << "Possible moves for the king: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 8; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // If the new position is on the board, mark it as a possible move
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE) {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            if (board[i][j] == 1)
+            {
+                cout << "K ";
+            }
+            else if (board[i][j] == 2)
+            {
+                cout << "X ";
+            }
+            else
+            {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_queen_moves_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the queen on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] =
+    {
+        {-1, -1}, {-1, 0}, {-1, 1},
+        {0, -1},           {0, 1},
+        {1, -1}, {1, 0}, {1, 1}
+    };
+
+    cout << "Possible moves for the queen: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 8; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in current direction until the end of the board is reached or a piece is encountered
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE) {
+            board[new_row][new_col] = 2;
+            if (board[new_row][new_col] != 0) {
+                break;
+            }
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "Q ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_queen_moves_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the queen on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] =
+    {
+        {-1, -1}, {-1, 0}, {-1, 1},
+        {0, -1},           {0, 1},
+        {1, -1}, {1, 0}, {1, 1}
+    };
+
+    cout << "Possible moves for the queen: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 8; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in current direction until the end of the board is reached or a piece is encountered
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE) {
+            board[new_row][new_col] = 2;
+            if (board[new_row][new_col] != 0) {
+                break;
+            }
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "Q ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_bishop_moves_right_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the bishop on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the two diagonal directions to the right from current position
+    int moves[2][2] = {
+        {-1, 1},
+        {1, 1}
+    };
+
+    cout << "Possible moves for the bishop: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+    // Loop through all possible moves
+    for (int i = 0; i < 2; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the bishop
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "b ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_bishop_moves_left_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the bishop on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the two diagonal directions to the left from current position
+    int moves[2][2] = {
+        {-1, -1},
+        {1, -1}
+    };
+
+    cout << "Possible moves for the bishop: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 2; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the bishop
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "B ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_bishop_moves_right_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the bishop on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the two diagonal directions to the right from current position
+    int moves[2][2] = {
+        {-1, 1},
+        {1, 1}
+    };
+
+    cout << "Possible moves for the bishop: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw third row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+
+        // Draw fourth row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                color = WHITE_COLOR;
+            }
+            else
+            {
+                color = BLACK_COLOR;
+            }
+            cout << "|" << color << "       " << pieces[row][col] << "   " << RESET_COLOR;
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+    // Loop through all possible moves
+    for (int i = 0; i < 2; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the bishop
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "b ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_bishop_moves_left_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the bishop on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the two diagonal directions to the left from current position
+    int moves[2][2] = {
+        {-1, -1},
+        {1, -1}
+    };
+
+    cout << "Possible moves for the bishop: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 2; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the bishop
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "B ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_knight_moves_right_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the knight on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] = {
+        {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}, {1, -2}, {2, -1}, {2, 1}, {1, 2}
+    };
+
+    cout << "Possible moves for the knight: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            if (row == current_position_row && col == current_position_column) {
+                cout << "n ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            bool found_move = false;
+            for (int i = 0; i < 8; i++)
+            {
+                int new_row = current_position_row + moves[i][0];
+                int new_col = current_position_column + moves[i][1];
+                if (new_row == row && new_col == col)
+                {
+                    found_move = true;
+                    break;
+                }
+            }
+            if (found_move) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_knight_moves_left_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the knight on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] = {
+        {-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}, {2, -1}, {2, 1}
+    };
+
+    cout << "Possible moves for the knight: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            if (row == current_position_row && col == current_position_column) {
+                cout << "N ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            bool found_move = false;
+            for (int i = 0; i < 8; i++)
+            {
+                int new_row = current_position_row + moves[i][0];
+                int new_col = current_position_column + moves[i][1];
+                if (new_row == row && new_col == col)
+                {
+                    found_move = true;
+                    break;
+                }
+            }
+            if (found_move) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+
+void new_knight_moves_right_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the knight on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] = {
+        {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}, {1, -2}, {2, -1}, {2, 1}, {1, 2}
+    };
+
+    cout << "Possible moves for the knight: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            if (row == current_position_row && col == current_position_column) {
+                cout << "n ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            bool found_move = false;
+            for (int i = 0; i < 8; i++)
+            {
+                int new_row = current_position_row + moves[i][0];
+                int new_col = current_position_column + moves[i][1];
+                if (new_row == row && new_col == col)
+                {
+                    found_move = true;
+                    break;
+                }
+            }
+            if (found_move) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_knight_moves_left_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the knight on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in all eight directions from current position
+    int moves[8][2] = {
+        {-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}, {2, -1}, {2, 1}
+    };
+
+    cout << "Possible moves for the knight: " << endl;
+
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        // Draw top horizontal border line
+        for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+            cout << "-";
+
+        cout << endl;
+
+        // Draw first row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            if (row == current_position_row && col == current_position_column) {
+                cout << "N ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+
+        // Draw second row of boxes
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            if ((row + col) % 2 == 0)
+            {
+                cout << "| ";
+            }
+            else
+            {
+                cout << "|.";
+            }
+            bool found_move = false;
+            for (int i = 0; i < 8; i++)
+            {
+                int new_row = current_position_row + moves[i][0];
+                int new_col = current_position_column + moves[i][1];
+                if (new_row == row && new_col == col)
+                {
+                    found_move = true;
+                    break;
+                }
+            }
+            if (found_move) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << "|" << endl;
+    }
+
+    // Draw bottom horizontal border line
+    for (int i = 0; i < BOARD_SIZE * 12 + 1; i++)
+        cout << "-";
+    cout << endl << endl << endl;
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_rock_moves_right_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the rook on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the horizontal and vertical directions from current position
+    int moves[4][2] = {
+        {-1, 0}, // Move up
+        {1, 0}, // Move down
+        {0, -1}, // Move left
+        {0, 1} // Move right
+    };
+
+    cout << "Possible moves for the rook: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 4; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the rook
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            if (board[i][j] == 1)
+            {
+                cout << "r ";
+            }
+            else if (board[i][j] == 2)
+            {
+                cout << "X ";
+            }
+            else
+            {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+void new_rock_moves_left_1()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the rook on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the horizontal and vertical directions from current position
+    int moves[4][2] = {
+        {-1, 0}, // Move up
+        {1, 0}, // Move down
+        {0, -1}, // Move left
+        {0, 1} // Move right
+    };
+
+    cout << "Possible moves for the rook: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 4; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the rook
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "R ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+
+void new_rock_moves_right_2()
+{
+
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the rook on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the horizontal and vertical directions from current position
+    int moves[4][2] = {
+        {-1, 0}, // Move up
+        {1, 0}, // Move down
+        {0, -1}, // Move left
+        {0, 1} // Move right
+    };
+
+    cout << "Possible moves for the rook: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 4; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the rook
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            if (board[i][j] == 1)
+            {
+                cout << "r ";
+            }
+            else if (board[i][j] == 2)
+            {
+                cout << "X ";
+            }
+            else
+            {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+
+void new_rock_moves_left_2()
+{
+    const int BOARD_SIZE = 8;
+    int current_position_row, current_position_column;
+
+    cout << "Enter current position of row" << endl;
+    cin >> current_position_row;
+    cout << "Enter current position of column" << endl;
+    cin >> current_position_column;
+
+    // Create a 2D array to store the board
+    int** board = new int* [BOARD_SIZE];
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        board[i] = new int[BOARD_SIZE];
+    }
+
+    // Initialize the board with zeros
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    // Mark the current position of the rook on the board
+    board[current_position_row][current_position_column] = 1;
+
+    // Check moves in the horizontal and vertical directions from current position
+    int moves[4][2] = {
+        {-1, 0}, // Move up
+        {1, 0}, // Move down
+        {0, -1}, // Move left
+        {0, 1} // Move right
+    };
+
+    cout << "Possible moves for the rook: " << endl;
+
+    // Loop through all possible moves
+    for (int i = 0; i < 4; i++)
+    {
+        int new_row = current_position_row + moves[i][0];
+        int new_col = current_position_column + moves[i][1];
+
+        // Keep moving in the current direction until we hit a boundary or another piece
+        while (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] == 0)
+        {
+            board[new_row][new_col] = 2;
+            new_row += moves[i][0];
+            new_col += moves[i][1];
+        }
+
+        // Mark the final position if it's on the board and not occupied by the rook
+        if (new_row >= 0 && new_row < BOARD_SIZE && new_col >= 0 && new_col < BOARD_SIZE && board[new_row][new_col] != 1)
+        {
+            board[new_row][new_col] = 2;
+        }
+    }
+
+    // Print the board with possible moves
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (board[i][j] == 1) {
+                cout << "R ";
+            }
+            else if (board[i][j] == 2) {
+                cout << "X ";
+            }
+            else {
+                cout << ". ";
+            }
+        }
+        cout << endl;
+    }
+
+    // Free the memory allocated for the board
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        delete[] board[i];
+    }
+    delete[] board;
+}
+
+bool isSafe(int board[BOARD_SIZE][BOARD_SIZE], int row, int col)
+{
+    // Check for attacks from opponent's knights
+    int knightMoves[8][2] = { {-2, -1}, {-1, -2}, {1, -2}, {2, -1},
+                             {2, 1},   {1, 2},   {-1, 2}, {-2, 1} };
+    for (int i = 0; i < 8; i++)
+    {
+        int newRow = row + knightMoves[i][0];
+        int newCol = col + knightMoves[i][1];
+        if (newRow >= 0 && newRow < BOARD_SIZE && newCol >= 0 && newCol < BOARD_SIZE)
+        {
+            if (board[newRow][newCol] == 2) // Opponent's knight
+                return false;
+        }
+    }
+
+    // Check for attacks from opponent's rooks and queens
+    int rookMoves[4][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+    for (int i = 0; i < 4; i++)
+    {
+        int newRow = row + rookMoves[i][0];
+        int newCol = col + rookMoves[i][1];
+        while (newRow >= 0 && newRow < BOARD_SIZE && newCol >= 0 && newCol < BOARD_SIZE)
+        {
+            if (board[newRow][newCol] == 3 || board[newRow][newCol] == 4) // Opponent's rook or queen
+                return false;
+            else if (board[newRow][newCol] != 0) // Non-empty square blocking the rook's path
+                break;
+
+            newRow += rookMoves[i][0];
+            newCol += rookMoves[i][1];
+        }
+    }
+
+    // Check for attacks from opponent's bishops and queens
+    int bishopMoves[4][2] = { {-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
+    for (int i = 0; i < 4; i++)
+    {
+        int newRow = row + bishopMoves[i][0];
+        int newCol = col + bishopMoves[i][1];
+        while (newRow >= 0 && newRow < BOARD_SIZE && newCol >= 0 && newCol < BOARD_SIZE)
+        {
+            if (board[newRow][newCol] == 5 || board[newRow][newCol] == 4) // Opponent's bishop or queen
+                return false;
+            else if (board[newRow][newCol] != 0) // Non-empty square blocking the bishop's path
+                break;
+
+            newRow += bishopMoves[i][0];
+            newCol += bishopMoves[i][1];
+        }
+    }
+
+    // Check for attacks from opponent's kings
+    int kingMoves[8][2] = { {-1, -1}, {-1, 0}, {-1, 1},
+                           {0, -1},           {0, 1},
+                           {1, -1}, {1, 0}, {1, 1} };
+    for (int i = 0; i < 8; i++)
+    {
+        int newRow = row + kingMoves[i][0];
+        int newCol = col + kingMoves[i][1];
+        if (newRow >= 0 && newRow < BOARD_SIZE && newCol >= 0 && newCol < BOARD_SIZE)
+        {
+            if (board[newRow][newCol] == 6) // Opponent's king
+                return false;
+        }
+    }
+
+    // Check for attacks from opponent's queens
+    int queenMoves[8][2] = { {-1, -1}, {-1, 0}, {-1, 1},
+                            {0, -1},           {0, 1},
+                            {1, -1}, {1, 0}, {1, 1} };
+    for (int i = 0; i < 8; i++)
+    {
+        int newRow = row + queenMoves[i][0];
+        int newCol = col + queenMoves[i][1];
+        while (newRow >= 0 && newRow < BOARD_SIZE && newCol >= 0 && newCol < BOARD_SIZE)
+        {
+            if (board[newRow][newCol] == 4) // Opponent's queen
+                return false;
+            else if (board[newRow][newCol] != 0) // Non-empty square blocking the queen's path
+                break;
+
+            newRow += queenMoves[i][0];
+            newCol += queenMoves[i][1];
+        }
+    }
+
+    // If no attacks found, king is safe
+    return true;
+}
+
+void saveTheKing()
+{
+    int board[BOARD_SIZE][BOARD_SIZE] = { 0 };
+    int kingRow, kingCol;
+
+    cout << endl;
+    cout << " It's time to play save the King ";
+    cout << endl;
+    cout << "Enter the row of the king: ";
+    cin >> kingRow;
+    cout << "Enter the column of the king: ";
+    cin >> kingCol;
+
+    board[kingRow][kingCol] = 1; // Place the king on the board
+
+    // Mark opponent's pieces on the board
+    board[0][0] = 2; // Opponent's knight
+    board[0][2] = 3; // Opponent's rook
+    board[0][7] = 3; // Opponent's rook
+    board[1][1] = 4; // Opponent's queen
+    board[3][3] = 4; // Opponent's queen
+    board[7][1] = 5; // Opponent's bishop
+    board[7][6] = 5; // Opponent's bishop
+    board[6][2] = 6; // Opponent's king
+
+    // Print the board
+    for (int row = 0; row < BOARD_SIZE; row++)
+    {
+        for (int col = 0; col < BOARD_SIZE; col++)
+        {
+            cout << board[row][col] << " ";
+        }
+        cout << endl;
+    }
+
+    // Check if the king is safe
+    bool isKingSafe = isSafe(board, kingRow, kingCol);
+    if (isKingSafe)
+        cout << "The king is safe." << endl;
+    else
+        cout << "The king is in check." << endl;
+}
+
+
+
+
+int main()
+{
+    start();
+    saveTheKing();
+    system("pause");
+    return 0;
+}
